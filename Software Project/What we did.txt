@@ -1,0 +1,11 @@
+Classes
+	User
+		Guest
+	
+	Product
+	Brand
+	Category
+	
+	Search
+
+ALL GETTERS AND SETTERS
