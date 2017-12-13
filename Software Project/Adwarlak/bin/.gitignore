@@ -4,5 +4,10 @@
 /Product.class
 /Search.class
 /User.class
+<<<<<<< HEAD
 /Customer.class
 /Admin.class
+=======
+/Store.class
+/ShopOwner.class
+>>>>>>> ro2a
