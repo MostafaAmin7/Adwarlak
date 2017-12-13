@@ -46,6 +46,8 @@ public class Store {
 		this.owner = owner;
 	}
 	
+=======
+>>>>>>> Amira
 	public void removeProduct(Product product){
 		for(int i=0 ; i<toSell.size() ; i++){
 			if(toSell.get(i)==product){
