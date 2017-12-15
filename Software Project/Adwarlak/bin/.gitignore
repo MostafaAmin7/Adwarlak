@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Admin.class
 /Cart.class
 /Customer.class
@@ -5,3 +6,7 @@
 /ShopOwner.class
 /ShopOwnerGUI.class
 /Store.class
+=======
+/Database.class
+/DatabaseController.class
+>>>>>>> Islam
