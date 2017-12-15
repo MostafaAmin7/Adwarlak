@@ -17,9 +17,5 @@ public class Brand {
 	}
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
-	}	
-
-	
-	
-	
+	}
 }

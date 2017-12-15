@@ -1,7 +1,7 @@
 
 public class User {
 	// attributes
-	private String name, mail, phone;
+	private String name, mail, phone, password;
 	private int age;
 	private Search search;
 
@@ -35,5 +35,17 @@ public class User {
 	}
 	public void setSearch(Search search) {
 		this.search = search;
+	}
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
