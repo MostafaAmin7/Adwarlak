@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer extends User{
 	private float rate;
 //	private Cart cart;
 	private float voucherCard;
