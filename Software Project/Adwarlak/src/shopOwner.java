@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class shopOwner extends User{
+public class ShopOwner extends User{
 
 	private boolean premium;
 	ArrayList<Store> stores;
 	private String startDate,endDate;
-	private shopOwnerGUI gui;
+	private ShopOwnerGUI gui;
 	
 	
 	
