@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Customer {
 	private float rate;
-//	private Cart cart;
+	private Cart cart;
 	private float voucherCard;
 	private ArrayList<Product> prevBuy;
 //	private ArrayList<Product> prevSearch;
-//	CustomerGUI gui;
+	CustomerGUI gui;
 	
 	public void addToPrevBuy(Product p) {
 		if(!prevBuy.contains(p)) {
@@ -21,14 +21,9 @@ public class Customer {
 //		
 //	}
 	
-//	public void addToCart(Product p) {
-//		cart.addToBuy();
-//	}
+	public void addToCart(Product product) {
+		cart.addToBuy(product);
+	}
 	
-//	public void openCart() {
-//		if(!cart.toBuy.isEmpty()) {
-//			
-//		}
-//	}
 	
 }

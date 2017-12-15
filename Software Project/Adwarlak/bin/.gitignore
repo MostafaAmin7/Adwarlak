@@ -1,17 +1,5 @@
-<<<<<<< HEAD
-/SearchGUI.class
+/CustomerGUI.class
 /ProductGUI.class
-=======
-<<<<<<< HEAD
-/Admin.class
-/Cart.class
-/Customer.class
-/Search.class
+/SearchGUI.class
 /ShopOwner.class
 /ShopOwnerGUI.class
-/Store.class
-=======
-/Database.class
-/DatabaseController.class
->>>>>>> Islam
->>>>>>> 66c961a2dda1f7093ba9545804e36ff73347f824
