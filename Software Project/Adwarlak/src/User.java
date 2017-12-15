@@ -3,7 +3,7 @@ public class User {
 	// attributes
 	private String name, mail, phone;
 	private int age;
-	private Search search;
+	private DatabaseController databaseController;
 
 	//Getter  & Setter
 	public String getName() {
@@ -30,10 +30,10 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Search getSearch() {
-		return search;
+	public DatabaseController getSearch() {
+		return databaseController;
 	}
-	public void setSearch(Search search) {
-		this.search = search;
+	public void setSearch(DatabaseController databaseController) {
+		this.databaseController = databaseController;
 	}
 }
