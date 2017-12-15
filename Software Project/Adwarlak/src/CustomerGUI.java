@@ -7,8 +7,9 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
 
-public class CustomerGUI extends JPanel{
+public class CustomerGUI {
 	//ENTRY 
 	/*
 	 * Other Classes that this Class use
@@ -18,19 +19,7 @@ public class CustomerGUI extends JPanel{
 	 * */
 	public CustomerGUI() {
 		instance=this;
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 450, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 300, Short.MAX_VALUE)
-		);
-		setLayout(groupLayout);
-		productsToShow = new ArrayList<Product>();
-		brands = new ArrayList<Brand>();
-		categories = new ArrayList<Category>();
+		
 		setup();
 	}
 	//ENTRY Attributes
@@ -38,6 +27,9 @@ public class CustomerGUI extends JPanel{
 	private ArrayList<Brand> brands;
 	private ArrayList<Category> categories;
 	private CustomerGUI instance;
+	private JPanel buyPanel, payPanel;
+	private SearchGUI searchPanel;
+	private ProductGUI productPanel;
 	
 	//ENTRY Functions
 	public void setup() {
