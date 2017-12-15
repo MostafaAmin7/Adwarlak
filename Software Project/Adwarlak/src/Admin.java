@@ -1,7 +1,7 @@
 
 public class Admin {
 	
-	AdminGUI GUI;
+//	AdminGUI GUI;
 	int level;
 	
 	public void addProduct(Product product) {
@@ -26,5 +26,21 @@ public class Admin {
 	
 	public void removeCategory(String category) {
 		//search and delete if found (DatabaseController)
+	}
+	
+	public void addAdmin(Admin admin) {
+		
+	}
+	
+	public void removeAdmin(Admin admin) {
+		
+	}
+	
+	public void seeRequests() {
+		
+	}
+	
+	public void getStatistics() {
+		
 	}
 }
