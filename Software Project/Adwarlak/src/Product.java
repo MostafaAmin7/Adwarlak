@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 public class Product {
 	// Attributes
 	private String name, id, description, color;
 	private ArrayList<Category> category;
 	private Brand brand;
-	private double price, sale;
+	private Double price, sale;
 
 	//Getters & Setters
 	public String getName() {
@@ -45,10 +44,10 @@ public class Product {
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public double getSale() {

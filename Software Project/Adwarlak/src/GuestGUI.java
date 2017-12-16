@@ -14,29 +14,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class GuestGUI extends JPanel{
-	//ENTRY 
-	/*
-	 * Other Classes that this Class use
-	 * 			Pages only for this 
-	 * 					user
-	 * 	-SignUP  -LogIn
-	 * */
+	//ENTRY constructor
 	public GuestGUI() {
 		instance=this;
-		productsToShow = new ArrayList<Product>();
-		brands = new ArrayList<Brand>();
-		categories = new ArrayList<Category>();
 		setup();
 	}
-	//ENTRY Attributes
-	private ArrayList<Product> productsToShow;
-	private ArrayList<Brand> brands;
-	private ArrayList<Category> categories;
 	private GuestGUI instance;
 	
 	//ENTRY Functions
 	public void setup() {
-		JTextField searchBar;
 		//ENTRY Button Actions
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
@@ -63,54 +49,39 @@ public class GuestGUI extends JPanel{
 			}
 		});
 		
-		JButton searchButton = new JButton("Search");
-		
 		JLabel titleLabel = new JLabel("Adwarlak");
 		
-		searchBar = new JTextField();
-		searchBar.setText("search");
-		searchBar.setColumns(50);
-		
-		//setting the spaceholder
-		searchBar.setForeground(Color.GRAY);
-		searchBar.addFocusListener(new FocusListener() {
-		    @Override
-		    public void focusGained(FocusEvent e) {
-		        if (searchBar.getText().equals("Search")) {
-		            searchBar.setText("");
-		            searchBar.setForeground(Color.BLACK);
-		        }
-		    }
-		    @Override
-		    public void focusLost(FocusEvent e) {
-		        if (searchBar.getText().isEmpty()) {
-		            searchBar.setForeground(Color.GRAY);
-		            searchBar.setText("Search");
-		        }
-		    }
-		    });
+		JButton btnShowProduct = new JButton("Show Product");
+		btnShowProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUIController.getInstance().swapPanel(instance, new ProductGUI(null));
+			}
+		});
 		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(backButton)
-							.addGap(133)
-							.addComponent(titleLabel)
-							.addPreferredGap(ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
-							.addComponent(logInButton))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(searchButton)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(searchBar, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-							.addGap(55)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(signUpButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnSignUpShopowner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(backButton)
+									.addGap(133)
+									.addComponent(titleLabel)
+									.addPreferredGap(ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+									.addComponent(logInButton))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGap(55)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(signUpButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnSignUpShopowner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(121)
+							.addComponent(btnShowProduct)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -123,12 +94,12 @@ public class GuestGUI extends JPanel{
 						.addComponent(titleLabel))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(signUpButton)
-						.addComponent(searchButton)
-						.addComponent(searchBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(signUpButton))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnSignUpShopowner)
-					.addContainerGap(198, Short.MAX_VALUE))
+					.addGap(38)
+					.addComponent(btnShowProduct)
+					.addContainerGap(137, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}
