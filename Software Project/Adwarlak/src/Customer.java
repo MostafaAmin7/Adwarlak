@@ -17,6 +17,30 @@ public class Customer extends User{
 		}
 	}
 
+	public float getRate() {
+		return rate;
+	}
+
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
+
+	public float getVoucherCard() {
+		return voucherCard;
+	}
+
+	public void setVoucherCard(float voucherCard) {
+		this.voucherCard = voucherCard;
+	}
+
+	public ArrayList<Product> getPrevBuy() {
+		return prevBuy;
+	}
+
+	public void setPrevBuy(ArrayList<Product> prevBuy) {
+		this.prevBuy = prevBuy;
+	}
+
 //	public void addToPrevSearch() {
 //		
 //	}
