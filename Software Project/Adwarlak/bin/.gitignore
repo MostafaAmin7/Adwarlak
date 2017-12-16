@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+/CustomerGUI.class
+/ProductGUI.class
+/SearchGUI.class
+/ShopOwnerGUI.class
+=======
 /SearchGUI.class
 /GUIController.class
 /GUIController$1.class
@@ -16,5 +22,9 @@
 /SignUp$1.class
 /SignUp$2.class
 /Project.class
+<<<<<<< HEAD
 /GuestGUI$6.class
 /ProductGUI$1.class
+=======
+>>>>>>> master
+>>>>>>> master

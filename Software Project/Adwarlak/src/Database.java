@@ -1,53 +1,3 @@
-<<<<<<< HEAD
-import java.util.ArrayList;
-
-public class Database {
-
-	public ArrayList<Product> products = new ArrayList<Product>();
-	public ArrayList<Brand> brands = new ArrayList<Brand>();
-	public ArrayList<Category> categories = new ArrayList<Category>();
-	public ArrayList<User> users = new ArrayList<User>();
-	public ArrayList<Admin> admins = new ArrayList<Admin>();
-	public ArrayList<ShopOwner> shopOwners = new ArrayList<ShopOwner>();
-	public ArrayList<Customer> cusromers = new ArrayList<Customer>();
-	public ArrayList<Store> stores = new ArrayList<Store>();
-	
-	
-	public Database() {
-		
-	}
-	
-	public User getUser(String name, String password) {
-		for (User user : users) {
-			if(user.getName().equals(name) && user.getPassword().equals(password)) {
-				return user;
-			}
-		}
-		return null;
-	}
-	
-	public ArrayList<Product> getProducts(String [] info){
-		ArrayList<Product> result = new ArrayList<Product>();
-		for (Product product : products) {
-			if(info[0].equals("") || product.getName().equals(info[0])) {
-				if(info[1].equals("") || product.getBrand().getName().equals(info[1])) {
-					if(info[2].equals("")) {
-						result.add(product);
-					}
-					else {
-						for (Category category : categories) {
-							if(category.getName().equals(info[2])) {
-								result.add(product);
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-		return result;
-	}
-=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -59,21 +9,39 @@ public class Database {
 
 	public Connection conn = null;
 	private String dbName = null;
+<<<<<<< HEAD
+	private String URL = null;
+	private String user = null;
+	private String password = null;
 	
 	public Database() {
-		// TODO Auto-generated constructor stub
-	}
+		dbName = "adwarlak";
+		URL = "jdbc:mysql://localhost:3306/";
+		user = "root";
+		password = "123456";
+=======
+	private String URL=null;
+	private String user=null;
+	private String password=null;
 	
-	public Database(String dbName, String dbURL){
-		this.dbName = dbName;
+	public Database() {
+		
+		this.dbName = "adwarlak";
+		URL="jdbc:mysql://localhost:3306/";
+		user="root";
+		password="123456";
+>>>>>>> ro2a
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			this.conn = DriverManager.getConnection(dbURL+dbName, "root", "123456");//here put the new simple url.
+			this.conn = DriverManager.getConnection(URL+dbName, user, password);//here put the new simple url.
+<<<<<<< HEAD
+=======
+		
+>>>>>>> ro2a
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -82,6 +50,111 @@ public class Database {
 		Statement sta = conn.createStatement();
 		return sta.executeQuery(sql);
 	}
+	public int signIn(String query ){
+		
+		try {
+			ResultSet result = runSql(query);
+			if(result.next()){
+				return result.getInt("type");
+			}
+			else{
+				return 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
 	
->>>>>>> Islam
+<<<<<<< HEAD
+	
+=======
+	public Admin getAdmin(String query){
+		try {
+			ResultSet result = runSql(query);
+			Admin admin=new Admin();
+			admin.setName(result.getString("u_name"));
+			admin.setMail(result.getString("mail"));
+			admin.setPhone(result.getString("phone"));
+			admin.setAge(result.getInt("age"));
+			admin.setLevel(result.getInt("level"));
+			
+			return admin;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;			
+		}
+	}
+	
+	public Customer getCustomer(String query){
+		try {
+			ResultSet result = runSql(query);
+			
+			Customer customer=new Customer();
+			customer.setName(result.getString("u_name"));
+			customer.setMail(result.getString("mail"));
+			customer.setPhone(result.getString("phone"));
+			customer.setAge(result.getInt("age"));
+			customer.setRate(result.getInt("rate"));
+			
+			
+			return customer;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;	
+		}
+	}
+	
+	public ShopOwner getShopOwner(String query){
+		try {
+			ResultSet result = runSql(query);
+			ShopOwner shopOwner=new ShopOwner();
+			shopOwner.setName(result.getString("u_name"));
+			shopOwner.setMail(result.getString("mail"));
+			shopOwner.setPhone(result.getString("phone"));
+			shopOwner.setAge(result.getInt("age"));
+			shopOwner.setStartDate(result.getString("start date"));
+			shopOwner.setEndDate(result.getString("end date"));
+			if(result.getInt("premium")==1){
+				shopOwner.setPremium(true);
+			}
+			else{
+				shopOwner.setPremium(false);
+			}
+			
+			
+			
+			
+			
+			
+			return shopOwner;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+public void signUp(String query){
+	try {
+		runSql(query);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	
+	
+}
+	
+
+>>>>>>> ro2a
 }

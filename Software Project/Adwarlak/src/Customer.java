@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer extends User{
 	private float rate;
 //	private Cart cart;
 	private float voucherCard;
@@ -15,6 +15,30 @@ public class Customer {
 		else {
 			
 		}
+	}
+
+	public float getRate() {
+		return rate;
+	}
+
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
+
+	public float getVoucherCard() {
+		return voucherCard;
+	}
+
+	public void setVoucherCard(float voucherCard) {
+		this.voucherCard = voucherCard;
+	}
+
+	public ArrayList<Product> getPrevBuy() {
+		return prevBuy;
+	}
+
+	public void setPrevBuy(ArrayList<Product> prevBuy) {
+		this.prevBuy = prevBuy;
 	}
 
 //	public void addToPrevSearch() {
