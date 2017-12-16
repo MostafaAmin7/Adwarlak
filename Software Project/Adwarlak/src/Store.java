@@ -7,7 +7,7 @@ public class Store {
 	private float rate;
 	private ArrayList<Product> toSell; 
 	private ArrayList<Product> history;
-	private ArrayList<User> owner;
+	private ShopOwner owner;
 	
 	public String getName() {
 		return name;
@@ -39,10 +39,10 @@ public class Store {
 	public void setHistory(ArrayList<Product> history) {
 		this.history = history;
 	}
-	public ArrayList<User> getOwner() {
+	public ShopOwner getOwner() {
 		return owner;
 	}
-	public void setOwner(ArrayList<User> owner) {
+	public void setOwner(ShopOwner owner) {
 		this.owner = owner;
 	}
 	public void removeProduct(Product product){

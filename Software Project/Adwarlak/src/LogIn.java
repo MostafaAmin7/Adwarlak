@@ -38,8 +38,8 @@ public class LogIn extends JPanel{
 					GUIController.getInstance().goPanelBack(instance);
 				}
 			});
-		JLabel userNameErrorLabel = new JLabel("Wrong UserName");
-		JLabel passwordErrorLabel = new JLabel("Wrong Password");
+		JLabel userNameErrorLabel = new JLabel();
+		JLabel passwordErrorLabel = new JLabel();
 		userNameErrorLabel.setForeground(Color.RED);
 		passwordErrorLabel.setForeground(Color.RED);
 		userNameErrorLabel.setVisible(false);
@@ -48,21 +48,37 @@ public class LogIn extends JPanel{
 		JButton logInButton = new JButton("Log in");
 		logInButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			//TODO Validation by database
-				if(!userNameField.getText().equals("sss")) {
-					System.out.println("SS");
+			// empty Validation
+				String name=userNameField.getText().trim();
+				String password=passwordField.getPassword().toString().trim();
+				if(name.equals("")) {
+					userNameErrorLabel.setText("Empty user name!");
 					userNameErrorLabel.setVisible(true);
+					return;
 				}
 				else {
-					if(userNameErrorLabel.isShowing()) {
-						userNameErrorLabel.setVisible(false);;
-					}
-					if(!passwordField.getPassword().toString().equals("ppp")) {
-						passwordErrorLabel.setVisible(true);
-					}
-					else {
-						//TODO move to next panel
-					}
+					userNameErrorLabel.setVisible(false);
+				}
+				if(password.equals("")) {
+					passwordErrorLabel.setText("Empty password!");
+					passwordErrorLabel.setVisible(true);
+					return;
+				}
+				else {
+					passwordErrorLabel.setVisible(false);
+				}
+			//TODO Validation by database
+				if(DatabaseController.getInstance().signIn(name, password) instanceof Customer) {
+					GUIController.getInstance().swapPanel(instance, new CustomerGUI((Customer)DatabaseController.getInstance().signIn(name, password)));
+				}
+				else if(DatabaseController.getInstance().signIn(name, password) instanceof Admin) {
+					
+				}
+				else if(DatabaseController.getInstance().signIn(name, password) instanceof ShopOwner) {
+					
+				}
+				else {
+					passwordErrorLabel.setText("Wrong user name or password!");
 				}
 			}
 		});

@@ -1,30 +1,36 @@
-<<<<<<< HEAD
+/AdminGUI.class
+/Brand.class
+/Cart.class
+/Category.class
+/Customer.class
 /CustomerGUI.class
-/ProductGUI.class
-/SearchGUI.class
-/ShopOwnerGUI.class
-=======
-/SearchGUI.class
-/GUIController.class
+/Database.class
+/DatabaseController.class
 /GUIController$1.class
-/GuestGUI.class
+/GUIController.class
+/Guest.class
 /GuestGUI$1.class
 /GuestGUI$2.class
 /GuestGUI$3.class
 /GuestGUI$4.class
-/GuestGUI$5.class
-/LogIn.class
+/GuestGUI.class
 /LogIn$1.class
 /LogIn$2.class
 /LogIn$3.class
 /LogIn$4.class
-/SignUp.class
+/LogIn.class
+/Product.class
+/ProductGUI$1.class
+/ProductGUI.class
+/Project.class
+/Search.class
+/SearchGUI.class
+/ShopOwner.class
+/ShopOwnerGUI.class
 /SignUp$1.class
 /SignUp$2.class
-/Project.class
-<<<<<<< HEAD
-/GuestGUI$6.class
-/ProductGUI$1.class
-=======
->>>>>>> master
->>>>>>> master
+/SignUp$3.class
+/SignUp$4.class
+/SignUp.class
+/Store.class
+/User.class

@@ -1,13 +1,24 @@
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JFrame;
+
 public class DatabaseController {
-	
-	private Database database;
-	
-	public DatabaseController() {
-		database = new Database();
+	// Instance
+	private static DatabaseController instance;
+	public static DatabaseController getInstance() {
+		if(instance==null) {
+			instance = new DatabaseController();
+		}
+		return instance;
 	}
+	// Constructor
+	private DatabaseController() {
+		instance=this;
+		instance.database = new Database();
+	}
+	//Attributes
+	private Database database;
 	
 	
 	public User signIn(String name, String password) {
@@ -40,9 +51,9 @@ public class DatabaseController {
 		if(database.signIn(query1) != 0) {
 			return null;
 		}
-		String query2;
+		String query2="";
 		
-		int type;
+		int type=0;
 		if(x instanceof Customer) {
 			query2 = "INSERT INTO `customer` VALUES(";
 			type = 3;

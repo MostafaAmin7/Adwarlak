@@ -20,7 +20,7 @@ public class GUIController {
         instance.mainFrame.setVisible(true);
 		instance.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         instance.mainFrame.add(new GuestGUI());
-        instance.mainFrame.pack();
+		instance.mainFrame.pack();
 	}
 	//Attributes
 	private JFrame mainFrame;

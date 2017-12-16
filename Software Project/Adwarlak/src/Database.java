@@ -9,20 +9,9 @@ public class Database {
 
 	public Connection conn = null;
 	private String dbName = null;
-<<<<<<< HEAD
 	private String URL = null;
 	private String user = null;
 	private String password = null;
-	
-	public Database() {
-		dbName = "adwarlak";
-		URL = "jdbc:mysql://localhost:3306/";
-		user = "root";
-		password = "123456";
-=======
-	private String URL=null;
-	private String user=null;
-	private String password=null;
 	
 	public Database() {
 		
@@ -30,15 +19,9 @@ public class Database {
 		URL="jdbc:mysql://localhost:3306/";
 		user="root";
 		password="123456";
->>>>>>> ro2a
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			this.conn = DriverManager.getConnection(URL+dbName, user, password);//here put the new simple url.
-<<<<<<< HEAD
-=======
-		
->>>>>>> ro2a
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -68,9 +51,6 @@ public class Database {
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	public Admin getAdmin(String query){
 		try {
 			ResultSet result = runSql(query);
@@ -156,5 +136,4 @@ public void signUp(String query){
 }
 	
 
->>>>>>> ro2a
 }
