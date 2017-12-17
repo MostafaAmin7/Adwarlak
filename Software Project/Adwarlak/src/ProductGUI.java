@@ -9,79 +9,210 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.plaf.ProgressBarUI;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTextField;
 
 public class ProductGUI extends JPanel{
 	//ENTRY constructor
-	public ProductGUI(Product productToShow) {
-		instance=this;
-		//TODO real
-//		toShow=productToShow;
-		//for the test
-		toShow = new Product();
-		Brand tempB= new Brand();
-		tempB.setName("7amada");
-		toShow.setCategory(new ArrayList<Category>());
-		toShow.setBrand(tempB);
-		toShow.setDescription("GoodGoodGoodGoodGoodGood\nGoodGoodGoodGoodGoodGood\nGoodGoodGoodGoodGoodGood\nGoodGoodGoodGoodGoodGood\n");
-		toShow.setName("7AMADA");
-		toShow.setPrice(22D);
+	public ProductGUI(Product productToShow,User x) {
+		toUse=x;
+		toShow=productToShow;
 		setup();
 	}
 	
 	//ENTRY Attributes
-	private ProductGUI instance;
+	private User toUse;
 	private Product toShow;
+	private JTextField priceValue;
+	private JTextField toAddValue;
 	
 	//ENTRY Functions
 	public void setup(){
-		setLayout(new MigLayout("", "[][][][grow][][][][][][][][]", "[][][][][][][grow][][][]"));
+		setLayout(null);
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");
-		add(lblAdwarlak, "cell 5 0");
+		lblAdwarlak.setBounds(194, 11, 44, 14);
+		add(lblAdwarlak);
 		
 		JButton backButton = new JButton("Back");
-		add(backButton, "cell 1 1 2 1");
+		backButton.setBounds(10, 11, 55, 23);
+		add(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					GUIController.getInstance().goPanelBack(instance);
+					GUIController.getInstance().goPanelBack();
 				}
 			});
 		
 		JLabel productNameLabel = new JLabel("ProductName");
+		productNameLabel.setBounds(10, 56, 64, 14);
 		productNameLabel.setMaximumSize(new Dimension(4654849, 8484614));
 		productNameLabel.setFocusable(false);
-		add(productNameLabel, "cell 1 3");
+		add(productNameLabel);
 		
 		JLabel productNameValueLabel = new JLabel(toShow.getName());
-		add(productNameValueLabel, "cell 3 3");
+		productNameValueLabel.setBounds(133, 56, 55, 14);
+		add(productNameValueLabel);
 		
 		JLabel brandLabel = new JLabel("Brand");
-		add(brandLabel, "cell 1 4");
+		brandLabel.setBounds(10, 81, 28, 14);
+		add(brandLabel);
 		
-		JLabel brandValueLabel = new JLabel(toShow.getBrand().getName());
-		add(brandValueLabel, "cell 3 4");
+		JLabel brandValueLabel = new JLabel(toShow.getBrand());
+		brandValueLabel.setBounds(133, 81, 55, 14);
+		add(brandValueLabel);
 		
 		JLabel categoriesLabel = new JLabel("Categories");
-		add(categoriesLabel, "cell 1 5");
+		categoriesLabel.setBounds(10, 106, 52, 14);
+		add(categoriesLabel);
 		
 		String categories="";
 		for(int i=0;i<toShow.getCategory().size();i++) {
-			categories += toShow.getCategory().get(i).getName()+", ";
+			categories += toShow.getCategory().get(i)+", ";
 		}
-		JLabel categoriesValueLabel = new JLabel(categories);
-		add(categoriesValueLabel, "cell 3 5,alignx right,aligny top");
+		JTextArea categoriesArea = new JTextArea(categories);
+		categoriesArea.setBounds(133, 101, 61, 60);
+		add(categoriesArea);
 		
 		JLabel descriptionLabel = new JLabel("Description");
-		add(descriptionLabel, "cell 1 6");
+		descriptionLabel.setBounds(10, 168, 53, 14);
+		add(descriptionLabel);
 		
 		JTextPane descriptionValue = new JTextPane();
+		descriptionValue.setBounds(133, 168, 61, 82);
 		descriptionValue.setText(toShow.getDescription());
-		add(descriptionValue, "cell 3 6,growy");
+		add(descriptionValue);
 		
 		JLabel priceLabel = new JLabel("Price");
-		add(priceLabel, "cell 1 9");
+		priceLabel.setBounds(10, 261, 23, 14);
+		add(priceLabel);
 		
 		JLabel priceValueLabel = new JLabel(toShow.getPrice().toString());
-		add(priceValueLabel, "cell 3 9");
+		priceValueLabel.setBounds(133, 261, 55, 14);
+		add(priceValueLabel);
+		
+		if(toUse instanceof ShopOwner) {
+			JLabel lblAvailable = new JLabel("Pieces available : ");
+			lblAvailable.setBounds(290, 56, 120, 14);
+			add(lblAvailable);
+			
+			priceValue = new JTextField();
+			priceValue.setBounds(290, 78, 120, 20);
+			add(priceValue);
+			priceValue.setColumns(10);
+			
+			JLabel priceError = new JLabel("");
+			priceError.setForeground(Color.RED);
+			priceError.setBounds(290, 101, 120, 14);
+			add(priceError);
+			
+			JButton updatePrice = new JButton("Update Price");
+				updatePrice.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						String price=priceValue.getText().trim();
+						if(price.equals("")) {
+							priceError.setText("Empty!");
+							priceError.setVisible(true);
+							return;
+						}
+						else {
+							priceError.setVisible(false);
+						}
+						Double p=0D;
+						try {
+							p=Double.parseDouble(price);
+						} catch (Exception e) {
+							priceError.setText("NaN");
+							priceError.setVisible(true);
+							return;
+						}
+						priceError.setVisible(false);
+						toShow.setPrice(p);
+						DatabaseController.getInstance().updateProduct(toShow);
+					}
+				});
+			updatePrice.setBounds(290, 114, 120, 23);
+			add(updatePrice);
+			
+			toAddValue = new JTextField();
+			toAddValue.setBounds(290, 165, 120, 20);
+			add(toAddValue);
+			toAddValue.setColumns(10);
+			
+			JButton addToStore = new JButton("Add To Store");
+			JLabel toAddError = new JLabel("");
+			toAddError.setBounds(290, 185, 120, 14);
+			add(toAddError);
+			addToStore.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String numberOfAdd = toAddValue.getText().trim();
+					if(numberOfAdd.equals("")) {
+						toAddError.setText("Empty");
+						toAddError.setVisible(true);
+						return;
+					}
+					else {
+						toAddError.setVisible(false);
+					}
+					int num = 0;
+					try {
+						num = Integer.parseInt(numberOfAdd);
+					}
+					catch(Exception ex) {
+						toAddError.setText("NaN");
+						toAddError.setVisible(true);
+						return;
+					}
+					
+					toAddError.setVisible(false);
+					toShow.setAvailable(toShow.getAvailable()+num);
+					DatabaseController.getInstance().updateProduct(toShow);
+				}
+			});
+			addToStore.setBounds(290, 210, 120, 23);
+			add(addToStore);
+			
+			JLabel storeName = new JLabel("store name : " + toShow.getStore());
+			storeName.setBounds(290, 261, 120, 14);
+			add(storeName);
+			
+		
+		
+		
+		}
+		if(toUse instanceof Customer) {
+			Customer x=(Customer)toUse;
+			JLabel lblYourVcard = new JLabel("Your VCard : "+x.getVoucherCard().toString());
+			lblYourVcard.setBounds(298, 52, 94, 23);
+			add(lblYourVcard);
+			
+			JLabel lblYouDontHave = new JLabel("you don't have enough money");
+			lblYouDontHave.setForeground(Color.RED);
+			lblYouDontHave.setHorizontalAlignment(SwingConstants.CENTER);
+			lblYouDontHave.setBounds(254, 106, 165, 14);
+			
+			JButton btnBuy = new JButton("Buy");
+			btnBuy.setBounds(298, 77, 89, 23);
+			add(btnBuy);
+			btnBuy.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+						if(x.getVoucherCard()<toShow.getPrice()) {
+							lblYouDontHave.setVisible(true);
+							return;
+						}
+						else {
+							lblYouDontHave.setVisible(false);
+						}
+						x.setVoucherCard((int)(x.getVoucherCard()-toShow.getPrice()));
+						DatabaseController.getInstance().submitBuy(x,toShow);
+						GUIController.getInstance().goPanelBack();
+						GUIController.getInstance().clearPreviousPanels();
+					}
+				});
+			
+			add(lblYouDontHave);
+		}
+		
 	}
 }

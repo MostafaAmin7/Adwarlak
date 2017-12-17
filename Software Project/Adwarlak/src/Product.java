@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class Product {
 	// Attributes
-	private String name, id, description, color;
-	private ArrayList<Category> category;
-	private Brand brand;
+	private String name, id, description, color, brand, store;
+	private ArrayList<String> category;
 	private Double price, sale;
+	private Integer numberOfViews, available, sold;
 
+	
 	//Getters & Setters
 	public String getName() {
 		return name;
@@ -32,16 +33,16 @@ public class Product {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public ArrayList<Category> getCategory() {
+	public ArrayList<String> getCategory() {
 		return category;
 	}
-	public void setCategory(ArrayList<Category> category) {
+	public void setCategory(ArrayList<String> category) {
 		this.category = category;
 	}
-	public Brand getBrand() {
+	public String getBrand() {
 		return brand;
 	}
-	public void setBrand(Brand brand) {
+	public void setBrand(String brand) {
 		this.brand = brand;
 	}
 	public Double getPrice() {
@@ -53,9 +54,32 @@ public class Product {
 	public double getSale() {
 		return sale;
 	}
-	public void setSale(double sale) {
+	public String getStore() {
+		return store;
+	}
+	public void setStore(String store) {
+		this.store = store;
+	}
+	public void setSale(Double sale) {
 		this.sale = sale;
 	}
-	
+	public Integer getNumberOfViews() {
+		return numberOfViews;
+	}
+	public void setNumberOfViews(Integer numberOfViews) {
+		this.numberOfViews = numberOfViews;
+	}
+	public Integer getAvailable() {
+		return available;
+	}
+	public void setAvailable(Integer available) {
+		this.available = available;
+	}
+	public Integer getSold() {
+		return sold;
+	}
+	public void setSold(Integer sold) {
+		this.sold = sold;
+	}
 
 }

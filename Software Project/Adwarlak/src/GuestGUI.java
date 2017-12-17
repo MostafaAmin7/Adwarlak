@@ -12,49 +12,50 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class GuestGUI extends JPanel{
 	//ENTRY constructor
 	public GuestGUI() {
-		instance=this;
 		setup();
 	}
-	private GuestGUI instance;
 	
 	//ENTRY Functions
 	public void setup() {
+		setBounds(0,0,494,441);
 		//ENTRY Button Actions
 		JButton backButton = new JButton("Back");
-		backButton.setBounds(20, 11, 74, 23);
+		backButton.setBounds(10, 33, 74, 23);
 		backButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-				GUIController.getInstance().goPanelBack(instance);
+				GUIController.getInstance().goPanelBack();
 			}
 		});
 		JButton logInButton = new JButton("Log in");
-		logInButton.setBounds(629, 79, 61, 23);
+		logInButton.setBounds(389, 67, 95, 23);
 		logInButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-				GUIController.getInstance().swapPanel(instance, new LogIn());
+				GUIController.getInstance().swapPanelWith(new LogIn());
 			}
 		});
 		JButton signUpButton = new JButton("Sign Up Customer");
-		signUpButton.setBounds(563, 11, 127, 23);
+		signUpButton.setBounds(10, 67, 139, 23);
 		signUpButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-				GUIController.getInstance().swapPanel(instance, new SignUp(1));
+				GUIController.getInstance().swapPanelWith(new SignUp(1));
 			}
 		});
 		JButton btnSignUpShopowner = new JButton("Sign Up ShopOwner");
-		btnSignUpShopowner.setBounds(563, 45, 127, 23);
+		btnSignUpShopowner.setBounds(186, 67, 139, 23);
 		btnSignUpShopowner.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIController.getInstance().swapPanel(instance, new SignUp(2));
+				GUIController.getInstance().swapPanelWith(new SignUp(2));
 			}
 		});
 		
 		JLabel titleLabel = new JLabel("Adwarlak");
-		titleLabel.setBounds(198, 15, 44, 14);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(186, 15, 139, 14);
 		setLayout(null);
 		add(backButton);
 		add(titleLabel);
@@ -63,7 +64,7 @@ public class GuestGUI extends JPanel{
 		add(btnSignUpShopowner);
 		
 		SearchGUI searchGUI = new SearchGUI();
-		searchGUI.setBounds(20, 45, 533, 377);
+		searchGUI.setBounds(0, 90, 494, 349);
 		add(searchGUI);
 	}
 }
