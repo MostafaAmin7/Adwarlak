@@ -10,10 +10,16 @@ public class Database {
 
 	public Connection conn = null;
 	private String dbName = null;
+<<<<<<< HEAD
 
 	private String URL=null;
 	private String user=null;
 	private String password=null;
+=======
+	private String URL = null;
+	private String user = null;
+	private String password = null;
+>>>>>>> Mostafa-Amin
 	
 	public Database() {
 		
@@ -21,7 +27,10 @@ public class Database {
 		URL="jdbc:mysql://localhost:3306/";
 		user="root";
 		password="123456";
+<<<<<<< HEAD
 		
+=======
+>>>>>>> Mostafa-Amin
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			this.conn = DriverManager.getConnection(URL+dbName, user, password);//here put the new simple url.
@@ -277,6 +286,7 @@ public class Database {
 		return customers;
 	}
 
+<<<<<<< HEAD
 	public int findBrand(String query) {
 		ResultSet result;
 		try {
@@ -435,3 +445,6 @@ public class Database {
 		}
 	}
 }
+=======
+}
+>>>>>>> Mostafa-Amin

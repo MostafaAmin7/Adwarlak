@@ -1,9 +1,9 @@
 
 public class User {
 	// attributes
-	private String name, mail, phone, password;
+	private String name, mail, phone/*, password*/;
 	private int age;
-	private DatabaseController databaseController;
+//	private DatabaseController databaseController;
 
 	//Getter  & Setter
 	public String getName() {
@@ -30,22 +30,22 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public DatabaseController getSearch() {
-		return databaseController;
-	}
-	public void setSearch(DatabaseController databaseController) {
-		this.databaseController = databaseController;
-	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public DatabaseController getSearch() {
+//		return databaseController;
+//	}
+//	public void setSearch(DatabaseController databaseController) {
+//		this.databaseController = databaseController;
+//	}
+//	/**
+//	 * @return the password
+//	 */
+//	public String getPassword() {
+//		return password;
+//	}
+//	/**
+//	 * @param password the password to set
+//	 */
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 }

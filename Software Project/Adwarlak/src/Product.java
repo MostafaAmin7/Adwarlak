@@ -4,6 +4,7 @@ public class Product {
 	// Attributes
 	private String name, id, description, color, brand, store;
 	private ArrayList<String> category;
+<<<<<<< HEAD
 	private double price, sale;
 	int avilable, sold, views;
 
@@ -38,6 +39,11 @@ public class Product {
 		this.price = price;
 		this.sale = sale;
 	}
+=======
+	private Double price, sale;
+	private Integer numberOfViews, available, sold;
+
+>>>>>>> Mostafa-Amin
 	
 	//Getters & Setters
 	public String getName() {
@@ -76,18 +82,25 @@ public class Product {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public double getSale() {
 		return sale;
 	}
-	public void setSale(double sale) {
+	public String getStore() {
+		return store;
+	}
+	public void setStore(String store) {
+		this.store = store;
+	}
+	public void setSale(Double sale) {
 		this.sale = sale;
 	}
+<<<<<<< HEAD
 	public String getStore() {
 		return store;
 	}
@@ -112,5 +125,25 @@ public class Product {
 	public void setViews(int views) {
 		this.views = views;
 	}
+=======
+	public Integer getNumberOfViews() {
+		return numberOfViews;
+	}
+	public void setNumberOfViews(Integer numberOfViews) {
+		this.numberOfViews = numberOfViews;
+	}
+	public Integer getAvailable() {
+		return available;
+	}
+	public void setAvailable(Integer available) {
+		this.available = available;
+	}
+	public Integer getSold() {
+		return sold;
+	}
+	public void setSold(Integer sold) {
+		this.sold = sold;
+	}
+>>>>>>> Mostafa-Amin
 
 }

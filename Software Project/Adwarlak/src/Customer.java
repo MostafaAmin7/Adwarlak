@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Customer extends User{
 	private float rate;
 //	private Cart cart;
-	private float voucherCard;
+	private Integer voucherCard;
 	private ArrayList<Product> prevBuy;
 //	private ArrayList<Product> prevSearch;
 //	CustomerGUI gui;
@@ -25,11 +25,11 @@ public class Customer extends User{
 		this.rate = rate;
 	}
 
-	public float getVoucherCard() {
+	public Integer getVoucherCard() {
 		return voucherCard;
 	}
 
-	public void setVoucherCard(float voucherCard) {
+	public void setVoucherCard(Integer voucherCard) {
 		this.voucherCard = voucherCard;
 	}
 

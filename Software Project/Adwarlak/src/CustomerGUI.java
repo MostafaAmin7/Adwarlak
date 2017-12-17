@@ -1,15 +1,13 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JButton;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-public class CustomerGUI {
+public class CustomerGUI extends JPanel{
 	//ENTRY 
 	/*
 	 * Other Classes that this Class use
@@ -17,22 +15,57 @@ public class CustomerGUI {
 	 * 					user
 	 * 	-SignUP  -LogIn
 	 * */
-	public CustomerGUI() {
-		instance=this;
-		
-		setup();
+	public CustomerGUI(Customer x) {
+		customer=x;
+		setup();		
 	}
+
 	//ENTRY Attributes
-	private ArrayList<Product> productsToShow;
-	private ArrayList<Brand> brands;
-	private ArrayList<Category> categories;
-	private CustomerGUI instance;
-	private JPanel buyPanel, payPanel;
-	private SearchGUI searchPanel;
-	private ProductGUI productPanel;
+	private Customer customer;
+	private JTextField textField;
 	
 	//ENTRY Functions
 	public void setup() {
+		setLayout(null);
 		
+		SearchGUI searchGUI_1 = new SearchGUI();
+		searchGUI_1.setBounds(0, 96, 510, 350);
+		add(searchGUI_1);
+		
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(10, 11, 89, 23);
+		add(backButton);
+		backButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIController.getInstance().goPanelBack();
+				}
+			});
+		
+		JButton logOutButton = new JButton("Log out");
+		logOutButton.setBounds(10, 55, 89, 23);
+		add(logOutButton);
+		logOutButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIController.getInstance().swapPanelWith(new GuestGUI());
+				}
+			});
+		
+		JLabel lblAdwarlak = new JLabel("Adwarlak");
+		lblAdwarlak.setBounds(228, 15, 106, 14);
+		add(lblAdwarlak);
+		
+		JButton suggestProductButton = new JButton("Suggest Product");
+		suggestProductButton.setBounds(352, 55, 131, 23);
+		add(suggestProductButton);
+		suggestProductButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIController.getInstance().swapPanelWith(new NewProductGUI(customer));
+				}
+			});
+		
+		textField = new JTextField(customer.getName());
+		textField.setBounds(397, 12, 86, 20);
+		add(textField);
+		textField.setColumns(10);
 	}
 }
