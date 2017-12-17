@@ -16,13 +16,14 @@ import javax.swing.ListSelectionModel;
 
 public class StatisticsGUI extends JPanel{
 	//ENTRY
-	public StatisticsGUI() {
-		setup();
+	public StatisticsGUI(User x) {
+		setup(x);
 	}
 	private ArrayList<Product> toShow;
+	private String selected;
 	
 	//ENTRY
-	public void setup() {
+	public void setup(User x) {
 		setLayout(null);
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");
@@ -59,7 +60,6 @@ public class StatisticsGUI extends JPanel{
 		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(storeList);
 		
-		String selected= "";
 		storeList.addListSelectionListener(new ListSelectionListener() {
 		    @Override
 		    public void valueChanged(ListSelectionEvent e)
@@ -81,10 +81,10 @@ public class StatisticsGUI extends JPanel{
 		add(showButton);
 		showButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Store x = DatabaseController.getInstance().getStore(selected);
+					Store xStore = DatabaseController.getInstance().getStore(selected);
 					ArrayList<ProductCardGUI> productCards = new ArrayList<ProductCardGUI>();
-					for(int i=0;i<x.getToSell().size();i++) {
-						ProductCardGUI temp=new ProductCardGUI(x.getToSell().get(i), true);
+					for(int i=0;i<xStore.getToSell().size();i++) {
+						ProductCardGUI temp=new ProductCardGUI(xStore.getToSell().get(i),x, true);
 						productCards.add(temp);
 						panel.add(productCards.get(i));
 					}

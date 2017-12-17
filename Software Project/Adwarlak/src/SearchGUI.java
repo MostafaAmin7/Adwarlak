@@ -214,9 +214,9 @@ public class SearchGUI extends JPanel{
 						minVal=-1D;
 						maxVal=-1D;
 					}
-					productsToShow=DatabaseController.getInstance().search(searchBar.getText(),selectedBrands,selectedCategories,minVal,maxVal);
+					productsToShow=DatabaseController.getInstance().search(searchBar.getText(),selectedBrands,selectedCategories,minVal.intValue(),maxVal.intValue());
 					for(int i=0;i<productsToShow.size();i++) {
-						productCards.add(new ProductCardGUI(productsToShow.get(i),false));
+						productCards.add(new ProductCardGUI(productsToShow.get(i),x,false));
 						ResultPanel.add(productCards.get(i));
 					}
 				}

@@ -258,7 +258,7 @@ public class NewProductGUI extends JPanel{
 						x.setCategory(categories);
 						x.setColor(colorValue.getText().trim());
 						x.setDescription(description);
-						Product resultX=DatabaseController.getInstance().addProductToSuggested(x);
+						Product resultX=DatabaseController.getInstance().suggestProduct(x);
 						if(resultX.getName().equals("")) {
 							nameErrorLabel.setText("Already Exists");
 							nameErrorLabel.setVisible(true);

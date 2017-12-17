@@ -46,17 +46,17 @@ public class ShopOwner extends User{
 			}
 		}
 	}
-	public void removeProduct(Product product,Store store)
-	{
-		for(int i=0;i<stores.size();i++)
-		{
-			if(stores.get(i)==store)
-			{
-				stores.get(i).removeProduct(product);
-				break;
-			}
-		}
-	}
+//	public void removeProduct(Product product,Store store)
+//	{
+//		for(int i=0;i<stores.size();i++)
+//		{
+//			if(stores.get(i).equals(store))
+//			{
+//				stores.get(i).removeProduct(product);
+//				break;
+//			}
+//		}
+//	}
 	public void showStatistics()
 	{
 		

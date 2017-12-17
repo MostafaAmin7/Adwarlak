@@ -9,11 +9,10 @@ import javax.swing.JTextField;
 
 public class ProductCardGUI extends JPanel{
 	//ENTRY Constructor
-	public ProductCardGUI(Product p,boolean isStatistic) {
+	public ProductCardGUI(Product p,User x,boolean isStatistic) {
 		toShow=p;
-		setup(isStatistic);
+		setup(isStatistic,x);
 	}
-	
 	private Product toShow;
 	private JTextField productNameValue;
 	private JTextField brandNameValue;
@@ -21,7 +20,7 @@ public class ProductCardGUI extends JPanel{
 	private JTextField storeNameValue;
 	private JTextField priceValue;
 	
-	public void setup(boolean isStatistic) {
+	public void setup(boolean isStatistic,User x) {
 		setLayout(null);
 		
 		JLabel productNameLabel = new JLabel("Product Name");
@@ -86,7 +85,7 @@ public class ProductCardGUI extends JPanel{
 			add(showProductButton);
 			showProductButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-						GUIController.getInstance().swapPanelWith(new ProductGUI(toShow));
+						GUIController.getInstance().swapPanelWith(new ProductGUI(toShow,x));
 					}
 				});
 		}

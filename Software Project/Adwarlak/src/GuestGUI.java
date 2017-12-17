@@ -63,7 +63,7 @@ public class GuestGUI extends JPanel{
 		add(signUpButton);
 		add(btnSignUpShopowner);
 		
-		SearchGUI searchGUI = new SearchGUI();
+		SearchGUI searchGUI = new SearchGUI(new Guest());
 		searchGUI.setBounds(0, 90, 494, 349);
 		add(searchGUI);
 	}

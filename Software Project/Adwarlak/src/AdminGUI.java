@@ -20,7 +20,7 @@ public class AdminGUI extends JPanel{
 	public void setup() {
 		setLayout(null);
 		setBounds(0, 0, 510, 460);
-		SearchGUI searchGUI = new SearchGUI();
+		SearchGUI searchGUI = new SearchGUI(admin);
 		searchGUI.setBounds(0, 100, 495, 350);
 		add(searchGUI);
 		

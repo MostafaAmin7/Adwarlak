@@ -25,6 +25,8 @@ public class ShopOwnerGUI extends JPanel{
 	private ShopOwner owner;
 	private JTextField storeName;
 	private JTextField storeAddress;
+	private String selected;
+	
 	//ENTRY Functions
 	public void setup() {
 		setLayout(null);
@@ -45,7 +47,6 @@ public class ShopOwnerGUI extends JPanel{
 		
 		JList<String> storeList = new JList<>(list);
 		scrollPane.setViewportView(storeList);
-		String selected;
 		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		storeList.addListSelectionListener(new ListSelectionListener() {
 		    @Override
@@ -117,7 +118,7 @@ public class ShopOwnerGUI extends JPanel{
 		JButton btnShowStatistics = new JButton("Show Statistics");
 		btnShowStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIController.getInstance().swapPanelWith(new StatisticsGUI());
+				GUIController.getInstance().swapPanelWith(new StatisticsGUI(owner));
 			}
 		});
 		

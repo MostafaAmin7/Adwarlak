@@ -205,7 +205,7 @@ public class ProductGUI extends JPanel{
 							lblYouDontHave.setVisible(false);
 						}
 						x.setVoucherCard((int)(x.getVoucherCard()-toShow.getPrice()));
-						DatabaseController.getInstance().submitBuy(x,toShow);
+						DatabaseController.getInstance().buy(toShow);
 						GUIController.getInstance().goPanelBack();
 						GUIController.getInstance().clearPreviousPanels();
 					}

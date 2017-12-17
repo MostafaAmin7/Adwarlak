@@ -292,14 +292,14 @@ public class DatabaseController {
 			return false;
 		}
 		query = "INSERT INTO `has a_p` VALUES (" + s_id + ", " + product.getId() + ", ";
-		query += product.getAvilable() + ", 0, " + product.getPrice() + ", 0);";
-		database.addProducToStore(query);
+		query += product.getAvailable() + ", 0, " + product.getPrice() + ", 0);";
+		database.Run(query);
 		return true;
 	}
 
 	public void updateVCard(Customer c) {
 		String query = "UPDATE customers SET vCard=" + c.getVoucherCard() + "WHERE u_name=" + c.getName() + ";";
-		database.updateVC(query);
+		database.Run(query);
 	}
 
 	public void buy(Product product) {
@@ -307,6 +307,15 @@ public class DatabaseController {
 		int s_id = database.getStoreID(query);
 		query = "UPDATE `has a_p` set avail=avail-1, sold = sold + 1 ";
 		query +="where s_id ="+ s_id+" and p_id =" +product.getId()+";";
-		database.buyProduct(query);
+		database.Run(query);
+	}
+	
+	public void updateProduct(Product product) {
+		String query = "SELECT * FROM stores where name=" + product.getStore() + ";";
+		int s_id = database.getStoreID(query);
+		query = "UPDATE `has a_p`";
+		query += " set avail = " + product.getAvailable() + ", price = " + product.getPrice();
+		query += " where p_id = " + product.getId() + " and s_id = " + s_id + ";";
+		database.Run(query);
 	}
 }

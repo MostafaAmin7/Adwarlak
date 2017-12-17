@@ -4,9 +4,7 @@ public class Product {
 	// Attributes
 	private String name, id, description, color, brand, store;
 	private ArrayList<String> category;
-<<<<<<< HEAD
-	private double price, sale;
-	int avilable, sold, views;
+	
 
 	public Product() {
 		
@@ -39,11 +37,11 @@ public class Product {
 		this.price = price;
 		this.sale = sale;
 	}
-=======
+
 	private Double price, sale;
 	private Integer numberOfViews, available, sold;
 
->>>>>>> Mostafa-Amin
+
 	
 	//Getters & Setters
 	public String getName() {
@@ -100,32 +98,13 @@ public class Product {
 	public void setSale(Double sale) {
 		this.sale = sale;
 	}
-<<<<<<< HEAD
-	public String getStore() {
-		return store;
-	}
-	public void setStore(String store) {
-		this.store = store;
-	}
-	public int getAvilable() {
-		return avilable;
-	}
-	public void setAvilable(int avilable) {
-		this.avilable = avilable;
-	}
-	public int getSold() {
-		return sold;
-	}
+
+	
+	
 	public void setSold(int sold) {
 		this.sold = sold;
 	}
-	public int getViews() {
-		return views;
-	}
-	public void setViews(int views) {
-		this.views = views;
-	}
-=======
+
 	public Integer getNumberOfViews() {
 		return numberOfViews;
 	}
@@ -144,6 +123,6 @@ public class Product {
 	public void setSold(Integer sold) {
 		this.sold = sold;
 	}
->>>>>>> Mostafa-Amin
+
 
 }

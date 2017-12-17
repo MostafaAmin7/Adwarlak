@@ -28,7 +28,7 @@ public class CustomerGUI extends JPanel{
 	public void setup() {
 		setLayout(null);
 		
-		SearchGUI searchGUI_1 = new SearchGUI();
+		SearchGUI searchGUI_1 = new SearchGUI(customer);
 		searchGUI_1.setBounds(0, 96, 510, 350);
 		add(searchGUI_1);
 		

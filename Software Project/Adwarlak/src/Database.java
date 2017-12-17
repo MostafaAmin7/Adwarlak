@@ -10,27 +10,16 @@ public class Database {
 
 	public Connection conn = null;
 	private String dbName = null;
-<<<<<<< HEAD
 
 	private String URL=null;
 	private String user=null;
 	private String password=null;
-=======
-	private String URL = null;
-	private String user = null;
-	private String password = null;
->>>>>>> Mostafa-Amin
-	
 	public Database() {
 		
 		this.dbName = "adwarlak";
 		URL="jdbc:mysql://localhost:3306/";
 		user="root";
 		password="123456";
-<<<<<<< HEAD
-		
-=======
->>>>>>> Mostafa-Amin
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			this.conn = DriverManager.getConnection(URL+dbName, user, password);//here put the new simple url.
@@ -133,10 +122,10 @@ public class Database {
 				newProduct.setColor(result.getString("color"));
 				newProduct.getCategory().add(result.getString("cName"));
 				newProduct.setStore(result.getString("sName"));
-				newProduct.setPrice(result.getFloat("price"));
-				newProduct.setAvilable(result.getInt("avail"));
+				newProduct.setPrice(result.getDouble("price"));
+				newProduct.setAvailable(result.getInt("avail"));
 				newProduct.setSold(result.getInt("sold"));
-				newProduct.setViews(result.getInt("veiws"));
+				newProduct.setNumberOfViews(result.getInt("veiws"));
 				products.add(newProduct);
 			}
 		} catch (SQLException e) {
@@ -175,14 +164,6 @@ public class Database {
 			return null;
 		}
 	}
-	
-//	public void signUp(String query){
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 	
 	public ArrayList<Product> getAllProducts(){
 		String query = "";
@@ -286,7 +267,6 @@ public class Database {
 		return customers;
 	}
 
-<<<<<<< HEAD
 	public int findBrand(String query) {
 		ResultSet result;
 		try {
@@ -301,14 +281,6 @@ public class Database {
 		return -1;
 	}
 
-//	public void addBrand(String query) {
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	public boolean findStore(String query) {
 		try {
 			return runSql(query).next();
@@ -317,14 +289,6 @@ public class Database {
 		}
 		return false;
 	}
-
-//	public void addStore(String query) {
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	public int findProduct(String query) {
 		try {
@@ -338,14 +302,6 @@ public class Database {
 		return -1;
 	}
 
-//	public void addProductToSystem(String query) {
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	public int findCategory(String query) {
 		try {
 			ResultSet result = runSql(query);
@@ -358,22 +314,6 @@ public class Database {
 		return -1;
 	}
 
-//	public void addCP(String query) {
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-//	public void addCategory(String query) {
-//		try {
-//			runSql(query);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	public ArrayList<Product> getStoreProducts(String query){
 		ArrayList<Product> products = new ArrayList<Product>();
 		Product product;
@@ -385,10 +325,10 @@ public class Database {
 				product.setDescription(result.getString("Description"));
 				product.setColor(result.getString("color"));
 				product.setBrand(result.getString("bName"));
-				product.setAvilable(result.getInt("avail"));
+				product.setAvailable(result.getInt("avail"));
 				product.setSold(result.getInt("sold"));
-				product.setViews(result.getInt("views"));
-				product.setPrice(result.getFloat("price"));
+				product.setNumberOfViews(result.getInt("views"));
+				product.setPrice(result.getDouble("price"));
 				products.add(product);
 			}
 		} catch (SQLException e) {
@@ -421,30 +361,6 @@ public class Database {
 		return false;
 	}
 
-	public void addProducToStore(String query) {
-		try {
-			runSql(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void updateVC(String query) {
-		try {
-			runSql(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void buyProduct(String query) {
-		try {
-			runSql(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }
-=======
-}
->>>>>>> Mostafa-Amin
+
+

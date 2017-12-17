@@ -368,8 +368,8 @@ public class SignUp extends JPanel{
 						Store xStore = new Store();
 						xStore.setName(shopName);
 						xStore.setAddress(shopAddress);
-						xStore.setOwner(x);
-						x.addStore(xStore);
+						xStore.setOwner(x.getName());
+						x.addStore(xStore.getName());
 						if(DatabaseController.getInstance().signUp(x, password) == null) {
 							userNameErrorLabel.setText("username already exists");
 							userNameErrorLabel.setVisible(true);

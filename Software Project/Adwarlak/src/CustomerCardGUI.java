@@ -53,7 +53,7 @@ public class CustomerCardGUI extends JPanel{
 				}
 				errorLabel.setVisible(false);
 				toShow.setVoucherCard(toShow.getVoucherCard()+v);
-				DatabaseController.getInstance().addVCard(toShow.getName(),toShow.getVoucherCard());
+				DatabaseController.getInstance().updateVCard(toShow);
 			}
 		});
 		addButton.setBounds(244, 56, 146, 23);
