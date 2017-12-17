@@ -19,9 +19,9 @@ public class AdminGUI extends JPanel{
 	//ENTRY Functions
 	public void setup() {
 		setLayout(null);
-		setBounds(0, 0, 520, 460);
+		setBounds(0, 0, 510, 460);
 		SearchGUI searchGUI = new SearchGUI();
-		searchGUI.setBounds(0, 100, 510, 350);
+		searchGUI.setBounds(0, 100, 495, 350);
 		add(searchGUI);
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");

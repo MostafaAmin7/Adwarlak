@@ -32,9 +32,6 @@ public class ProductCardGUI extends JPanel{
 		brandNameLabel.setBounds(10, 36, 92, 14);
 		add(brandNameLabel);
 		
-		JLabel categoriesLabel = new JLabel("Categories");
-		categoriesLabel.setBounds(10, 61, 92, 14);
-		add(categoriesLabel);
 		
 		JLabel storeLabel = new JLabel("Store");
 		storeLabel.setBounds(236, 11, 46, 14);
@@ -56,15 +53,6 @@ public class ProductCardGUI extends JPanel{
 		add(brandNameValue);
 		brandNameValue.setColumns(10);
 		
-		String categories = "";
-		for(int i=0;i<toShow.getCategory().size();i++) {
-			categories+= toShow.getCategory().get(i)+", ";
-		}
-		categoriesValue = new JTextField(categories);
-		categoriesValue.setEditable(false);
-		categoriesValue.setBounds(94, 61, 86, 20);
-		add(categoriesValue);
-		categoriesValue.setColumns(10);
 		
 		storeNameValue = new JTextField(toShow.getStore());
 		storeNameValue.setEditable(false);
@@ -78,6 +66,21 @@ public class ProductCardGUI extends JPanel{
 		add(priceValue);
 		priceValue.setColumns(10);
 		if(!isStatistic) {
+			JLabel categoriesLabel = new JLabel("Categories");
+			categoriesLabel.setBounds(10, 61, 92, 14);
+			add(categoriesLabel);
+			
+			String categories = "";
+			for(int i=0;i<toShow.getCategory().size();i++) {
+				categories+= toShow.getCategory().get(i)+", ";
+			}
+			categoriesValue = new JTextField(categories);
+			categoriesValue.setEditable(false);
+			categoriesValue.setBounds(94, 61, 264, 20);
+			add(categoriesValue);
+			categoriesValue.setColumns(10);
+			
+
 			JButton showProductButton = new JButton("ShowProduct");
 			showProductButton.setBounds(365, 66, 125, 23);
 			add(showProductButton);
