@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class ShopOwner extends User{
 
 	private boolean premium;
-	ArrayList<Store> stores;
+	ArrayList<String> stores;
 	private String startDate,endDate;
 	private ShopOwnerGUI gui;
 	
@@ -27,33 +27,22 @@ public class ShopOwner extends User{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public ArrayList<Store> getStores() {
+	public ArrayList<String> getStores() {
 		return stores;
 	}
 	
 	
-	public void addStore(Store store)
+	public void addStore(String store)
 	{
 		stores.add(store);
 	}
-	public void removeStore(Store store)
+	public void removeStore(String store)
 	{
 		for(int i=0;i<stores.size();i++)
 		{
 			if(stores.get(i)==store)
 			{
 				stores.remove(i);
-			}
-		}
-	}
-	public void addProduct(Product product,Store store)
-	{
-		for(int i=0;i<stores.size();i++)
-		{
-			if(stores.get(i)==store)
-			{
-				stores.get(i).setToSell(product);
-				break;
 			}
 		}
 	}

@@ -1,13 +1,44 @@
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 public class Product {
 	// Attributes
-	private String name, id, description, color;
-	private ArrayList<Category> category;
-	private Brand brand;
+	private String name, id, description, color, brand, store;
+	private ArrayList<String> category;
 	private double price, sale;
+	int avilable, sold, views;
 
+	public Product() {
+		
+	}
+	
+	public Product(Product x) {
+		this.name=x.name;
+		this.id = x.id;
+		this.description = x.description;
+		this.color = x.color;
+		this.category=new ArrayList<String>();
+		for (String string : x.category) {
+			this.category.add(""+string);
+		}
+		this.brand = x.brand;
+		this.price = x.price;
+		this.sale = x.sale;
+	}
+		
+		
+	
+	public Product(String name, String id, String description, String color, ArrayList<String> category, String brand,
+			double price, double sale) {
+		this.name = name;
+		this.id = id;
+		this.description = description;
+		this.color = color;
+		this.category = category;
+		this.brand = brand;
+		this.price = price;
+		this.sale = sale;
+	}
+	
 	//Getters & Setters
 	public String getName() {
 		return name;
@@ -33,16 +64,16 @@ public class Product {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public ArrayList<Category> getCategory() {
+	public ArrayList<String> getCategory() {
 		return category;
 	}
-	public void setCategory(ArrayList<Category> category) {
+	public void setCategory(ArrayList<String> category) {
 		this.category = category;
 	}
-	public Brand getBrand() {
+	public String getBrand() {
 		return brand;
 	}
-	public void setBrand(Brand brand) {
+	public void setBrand(String brand) {
 		this.brand = brand;
 	}
 	public double getPrice() {
@@ -57,6 +88,29 @@ public class Product {
 	public void setSale(double sale) {
 		this.sale = sale;
 	}
-	
+	public String getStore() {
+		return store;
+	}
+	public void setStore(String store) {
+		this.store = store;
+	}
+	public int getAvilable() {
+		return avilable;
+	}
+	public void setAvilable(int avilable) {
+		this.avilable = avilable;
+	}
+	public int getSold() {
+		return sold;
+	}
+	public void setSold(int sold) {
+		this.sold = sold;
+	}
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
 
 }
