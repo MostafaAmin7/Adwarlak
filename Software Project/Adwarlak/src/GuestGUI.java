@@ -22,7 +22,7 @@ public class GuestGUI extends JPanel{
 	
 	//ENTRY Functions
 	public void setup() {
-		setBounds(0,0,494,441);
+		setBounds(0,0,650,454);
 		//ENTRY Button Actions
 		JButton backButton = new JButton("Back");
 		backButton.setBounds(10, 33, 74, 23);
@@ -32,7 +32,7 @@ public class GuestGUI extends JPanel{
 			}
 		});
 		JButton logInButton = new JButton("Log in");
-		logInButton.setBounds(389, 67, 95, 23);
+		logInButton.setBounds(545, 67, 95, 23);
 		logInButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 				GUIController.getInstance().swapPanelWith(new LogIn());
@@ -46,7 +46,7 @@ public class GuestGUI extends JPanel{
 			}
 		});
 		JButton btnSignUpShopowner = new JButton("Sign Up ShopOwner");
-		btnSignUpShopowner.setBounds(186, 67, 139, 23);
+		btnSignUpShopowner.setBounds(258, 67, 139, 23);
 		btnSignUpShopowner.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUIController.getInstance().swapPanelWith(new SignUp(2));
@@ -55,7 +55,7 @@ public class GuestGUI extends JPanel{
 		
 		JLabel titleLabel = new JLabel("Adwarlak");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(186, 15, 139, 14);
+		titleLabel.setBounds(258, 11, 139, 14);
 		setLayout(null);
 		add(backButton);
 		add(titleLabel);
@@ -64,7 +64,7 @@ public class GuestGUI extends JPanel{
 		add(btnSignUpShopowner);
 		
 		SearchGUI searchGUI = new SearchGUI(new Guest());
-		searchGUI.setBounds(0, 90, 494, 349);
+		searchGUI.setBounds(0, 90, 640, 349);
 		add(searchGUI);
 	}
 }

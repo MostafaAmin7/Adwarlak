@@ -19,13 +19,13 @@ public class AdminGUI extends JPanel{
 	//ENTRY Functions
 	public void setup() {
 		setLayout(null);
-		setBounds(0, 0, 510, 460);
+		setBounds(0, 0, 640, 460);
 		SearchGUI searchGUI = new SearchGUI(admin);
-		searchGUI.setBounds(0, 100, 495, 350);
+		searchGUI.setBounds(0, 100, 640, 350);
 		add(searchGUI);
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");
-		lblAdwarlak.setBounds(223, 11, 61, 14);
+		lblAdwarlak.setBounds(293, 11, 61, 14);
 		add(lblAdwarlak);
 		
 		JButton backButton = new JButton("Back");
@@ -52,14 +52,14 @@ public class AdminGUI extends JPanel{
 				GUIController.getInstance().swapPanelWith(new NewProductGUI(admin));
 			}
 		});
-		addProductButton.setBounds(120, 66, 103, 23);
+		addProductButton.setBounds(168, 66, 103, 23);
 		add(addProductButton);
 		
 		JLabel errorLabel = new JLabel();
 		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		errorLabel.setForeground(Color.RED);
 		errorLabel.setVisible(false);
-		errorLabel.setBounds(251, 52, 86, 14);
+		errorLabel.setBounds(402, 56, 86, 14);
 		add(errorLabel);
 		
 		JButton addBrandButton = new JButton("Add Brand");
@@ -82,16 +82,16 @@ public class AdminGUI extends JPanel{
 				}
 			}
 		});
-		addBrandButton.setBounds(376, 66, 103, 23);
+		addBrandButton.setBounds(527, 66, 103, 23);
 		add(addBrandButton);
 		
 		JLabel AdminName = new JLabel(admin.getName());
 		AdminName.setHorizontalAlignment(SwingConstants.CENTER);
-		AdminName.setBounds(376, 23, 103, 32);
+		AdminName.setBounds(527, 23, 103, 32);
 		add(AdminName);
 		
 		brandNameValue = new JTextField();
-		brandNameValue.setBounds(251, 69, 86, 20);
+		brandNameValue.setBounds(402, 69, 86, 20);
 		add(brandNameValue);
 		brandNameValue.setColumns(10);
 	}

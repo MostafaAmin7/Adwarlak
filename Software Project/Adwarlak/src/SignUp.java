@@ -90,7 +90,7 @@ public class SignUp extends JPanel{
 				public void actionPerformed(ActionEvent arg0) {
 						//customer GUI side validation
 						String name=userNameField.getText().trim();
-						String password=passwordField.getPassword().toString().trim();
+						String password=passwordField.getText().toString().trim();
 						String mail=mailField.getText().trim();
 						String phone=phoneField.getText().trim();
 						String age=ageField.getText().trim();
@@ -276,7 +276,7 @@ public class SignUp extends JPanel{
 				public void actionPerformed(ActionEvent arg0) {
 						//StoreOwner GUI side validation
 						String name=userNameField.getText().trim();
-						String password=passwordField.getPassword().toString().trim();
+						String password=passwordField.getText().toString().trim();
 						String mail=mailField.getText().trim();
 						String phone=phoneField.getText().trim();
 						String age=ageField.getText().trim();

@@ -7,7 +7,7 @@ public class Product {
 	
 
 	public Product() {
-		
+		category = new ArrayList<String>();
 	}
 	
 	public Product(Product x) {

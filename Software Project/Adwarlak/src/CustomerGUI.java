@@ -29,7 +29,7 @@ public class CustomerGUI extends JPanel{
 		setLayout(null);
 		
 		SearchGUI searchGUI_1 = new SearchGUI(customer);
-		searchGUI_1.setBounds(0, 96, 510, 350);
+		searchGUI_1.setBounds(0, 96, 634, 350);
 		add(searchGUI_1);
 		
 		JButton backButton = new JButton("Back");
@@ -51,11 +51,11 @@ public class CustomerGUI extends JPanel{
 			});
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");
-		lblAdwarlak.setBounds(228, 15, 106, 14);
+		lblAdwarlak.setBounds(260, 15, 106, 14);
 		add(lblAdwarlak);
 		
 		JButton suggestProductButton = new JButton("Suggest Product");
-		suggestProductButton.setBounds(352, 55, 131, 23);
+		suggestProductButton.setBounds(503, 62, 131, 23);
 		add(suggestProductButton);
 		suggestProductButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -64,7 +64,7 @@ public class CustomerGUI extends JPanel{
 			});
 		
 		textField = new JTextField(customer.getName());
-		textField.setBounds(397, 12, 86, 20);
+		textField.setBounds(548, 19, 86, 20);
 		add(textField);
 		textField.setColumns(10);
 	}
