@@ -32,7 +32,9 @@ public class Database {
 
 	public void Run(String query) {
 		try {
-			runSql(query);
+			Statement statement = conn.createStatement();
+			statement.execute(query);
+//			runSql(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -77,6 +79,7 @@ public class Database {
 	public Customer getCustomer(String query){
 		try {
 			ResultSet result = runSql(query);
+			result.next();
 			Customer customer=new Customer();
 			customer.setName(result.getString("u_name"));
 			customer.setMail(result.getString("mail"));
@@ -153,7 +156,7 @@ public class Database {
 			
 			query = "select stores.name from `shop owner`, stores ";
 			query += "WHERE stores.u_name = `shop owner`.u_name and ";
-			query += "`shop owner`.u_name = " + shopOwner.getName() + ";";
+			query += "`shop owner`.u_name = \"" + shopOwner.getName() + "\";";
 			result = runSql(query);
 			while(result.next()) {
 				shopOwner.getStores().add(result.getString("name"));

@@ -21,21 +21,21 @@ public class DatabaseController {
 	
 	
 	public User signIn(String name, String password) {
-		String query = "SELECT * FROM user WHERE u_name = " + name + " and password = " + password;
+		String query = "SELECT * FROM `user` WHERE `u_name`=\"" + name + "\" and `password`=\"" + password + "\"";
 		int type = database.signIn(query);
 		if(type == 0) {
 			return null;
 		}
 		else if(type == 1) {
-			query = "SELECT * FROM admin WHERE u_name = " + name + " and password = " + password;
+			query = "SELECT * FROM `admin` WHERE `u_name` = \"" + name + "\" and `password` = \"" + password + "\"";
 			return database.getAdmin(query);
 		}
 		else if(type==2) {
-			query = "SELECT * FROM `shop owner` WHERE u_name = " + name + " and password = " + password;
+			query = "SELECT * FROM `shop owner` WHERE `u_name` = \"" + name + "\" and `password` = \"" + password + "\"";
 			return database.getShopOwner(query);
 		}
 		else if(type == 3) {
-			query = "SELECT * FROM customer WHERE u_name = " + name + " and password = " + password;
+			query = "SELECT * FROM `customer` WHERE `u_name` = \"" + name + "\" and `password` = \"" + password + "\"";
 			return database.getCustomer(query);
 		}
 		else {
@@ -44,7 +44,7 @@ public class DatabaseController {
 	}
 
 	public User signUp(User x, String password) {
-		String query1 = "SELECT * FROM user WHERE u_name = " + x.getName();
+		String query1 = "SELECT * FROM user WHERE u_name = \"" + x.getName()+"\"";
 		if(database.signIn(query1) != 0) {
 			return null;
 		}
@@ -62,39 +62,39 @@ public class DatabaseController {
 		
 		query1 = "INSERT INTO `user` VALUES(";
 		
-		query1 += " " + x.getName();
-		query2 += " " + x.getName();
+		query1 += " \"" + x.getName()+"\"";
+		query2 += " \"" + x.getName()+"\"";
 		
-		query1 += ", " + password;
-		query2 += ", " + password;
+		query1 += ", "+"\"" + password+"\"";
+		query2 += ", "+"\"" + password+"\"";
 		
-		query1 += ", " + x.getMail();
-		query2 += ", " + x.getMail();
+		query1 += ", "+"\"" + x.getMail()+"\"";
+		query2 += ", "+"\"" + x.getMail()+"\"";
 		
-		query1 += ", " + x.getPhone();
-		query2 += ", " + x.getPhone();
+		query1 += ", "+"\"" + x.getPhone()+"\"";
+		query2 += ", "+"\"" + x.getPhone()+"\"";
 		
-		query1 += ", " + x.getAge();
-		query2 += ", " + x.getAge();
+		query1 += ", "+"\"" + x.getAge()+"\"";
+		query2 += ", "+"\"" + x.getAge()+"\"";
 		
-		query1 += ", " + type;
-		query2 += ", " + type;
+		query1 += ", "+ type;
+		query2 += ", "+ type;
 		
 		if(type == 3) {
-			query2 += ", 0, 0";    //  rate , VCard
+			query2 += " "+"," + 0 + ", " + 0;    //  rate , VCard
 		}
 		else if(x instanceof ShopOwner){
 			ShopOwner owner = (ShopOwner)x;
-			query2 += ", " + owner.getStartDate();
-			query2 += ", " + owner.getEndDate();
+			query2 += ", " +"\""+ owner.getStartDate()+"\"";
+			query2 += ", " +"\""+ owner.getEndDate()+"\"";
 			query2 += ", " + owner.isPremium();
 			query2 += ", 0";    //  rate
 		}
 		
-		query1 += ");";
-		query2 += ");";
-		
-		database.Run(query1 + query2);
+		query1 += ") ;";
+		query2 += ") ;";
+		database.Run(query1);
+		database.Run(query2);
 		return x;
 	}
 	
@@ -111,7 +111,7 @@ public class DatabaseController {
 		startPrice = lower!=-1;
 		endPrice = upper!=-1;
 		
-		String query = "SELECT products.*, brands.name as bName, categories.name as cName, stores.name as sName";
+		String query = "SELECT products.*, brands.name as bName, categories.name as cName, stores.name as sName, `has a_p`.*";
 		query += " FROM products, brands, `belong to_c`, categories, `has a_p`, stores ";
 		query += " WHERE products.b_id = brands.b_id and";
 		query += " products.p_id=`belong to_c`.p_id and categories.c_id=`belong to_c`.c_id and `has a_p`.p_id = products.p_id and `has a_p`.s_id = stores.s_id";
@@ -158,21 +158,21 @@ public class DatabaseController {
 	}
 
 	public boolean addBrand(String name) {
-		String query = "SELECT * FROM brands WHERE name=" + name;
+		String query = "SELECT * FROM brands WHERE name=\"" + name + "\"";
 		if(database.findBrand(query) != -1) {
 			return false;
 		}
-		query = "INSERT INTO brands (name) VALUES (" + name + ")";
+		query = "INSERT INTO brands (name) VALUES (\"" + name + "\")";
 		database.Run(query);
 		return true;
 	}
 
 	public boolean addStore(String ownerName, String name,  String address) {
-		String query = "SELECT * FROM stores WHERE name=" + name;
+		String query = "SELECT * FROM stores WHERE name=\"" + name + "\"";
 		if(database.findStore(query)) {
 			return false;
 		}
-		query = "INSERT INTO stores (u_name, name, address) VALUES (" + ownerName + "," + name + "," + address +");";
+		query = "INSERT INTO stores (u_name, name, address) VALUES (\"" + ownerName + "\",\"" + name + "\",\"" + address +"\");";
 		database.Run(query);
 		return true;
 	}
@@ -182,12 +182,12 @@ public class DatabaseController {
 		boolean pass = true;
 		int id;
 		ArrayList<Integer> c_id = new ArrayList<Integer>();
-		String query = "SELECT * FROM products WHERE name=" + product.getName() + ";";
+		String query = "SELECT * FROM products WHERE name=\"" + product.getName() + "\";";
 		if(database.findProduct(query) != -1) {
 			product.setName("");
 			pass = false;
 		}
-		query = "SELECT * FROM brands WHERE name=" + product.getBrand() + ";";
+		query = "SELECT * FROM brands WHERE name=\"" + product.getBrand() + "\";";
 		id = database.findBrand(query);
 		if(id == -1) {
 			product.setBrand("");
@@ -195,7 +195,7 @@ public class DatabaseController {
 		}
 		
 		for (String category : product.getCategory()) {
-			query = "SELECT * FROM categories WHERE name=" + category + ";";
+			query = "SELECT * FROM categories WHERE name=\"" + category + "\";";
 			c_id.add(database.findCategory(query));
 			if(c_id.get(c_id.size()-1) == -1) {
 				product.getCategory().remove(category);
@@ -205,7 +205,7 @@ public class DatabaseController {
 		
 		if(pass) {
 			query = "INSERT INTO products (name, Description, color, b_id, inSystem) ";
-			query += "VALUES (" + product.getName() + ", " + product.getDescription()+", "+product.getColor();
+			query += "VALUES (\"" + product.getName() + "\", \"" + product.getDescription()+"\", \""+product.getColor() + "\"";
 			query += ", " + id + ", 1);";
 			database.Run(query);
 			for (Integer integer : c_id) {
@@ -217,11 +217,11 @@ public class DatabaseController {
 	}
 
 	public boolean addCategory(String name) {
-		String query = "SELECT * FROM categories WHERE name=" + name + ";";
+		String query = "SELECT * FROM categories WHERE name=\"" + name + "\";";
 		if(database.findCategory(query) != -1) {
 			return false;
 		}
-		query = "INSERT INTO categories (name) VALUES (" + name + ");";
+		query = "INSERT INTO categories (name) VALUES (\"" + name + "\");";
 		database.Run(query);
 		return true;
 	}
@@ -235,7 +235,7 @@ public class DatabaseController {
 		Store store = new Store();
 		query = "SELECT products.*, brands.name as bName,`has a_p`.* ";
 		query += "FROM products, `has a_p`, stores,brands ";
-		query += "WHERE products.b_id = brands.b_id and products.p_id = `has a_p`.p_id and `has a_p`.s_id = stores.s_id and stores.name = \"s3\"";
+		query += "WHERE products.b_id = brands.b_id and products.p_id = `has a_p`.p_id and `has a_p`.s_id = stores.s_id and stores.name = \"" + name + "\"";
 		
 		store.setName(name);		
 		store.setToSell(database.getStoreProducts(query));
@@ -247,12 +247,12 @@ public class DatabaseController {
 		boolean pass = true;
 		int id;
 		ArrayList<Integer> c_id = new ArrayList<Integer>();
-		String query = "SELECT * FROM products WHERE name=" + product.getName() + ";";
+		String query = "SELECT * FROM products WHERE name=\"" + product.getName() + "\";";
 		if(database.findProduct(query) != -1) {
 			product.setName("");
 			pass = false;
 		}
-		query = "SELECT * FROM brands WHERE name=" + product.getBrand() + ";";
+		query = "SELECT * FROM brands WHERE name=\"" + product.getBrand() + "\";";
 		id = database.findBrand(query);
 		if(id != -1) {
 			product.setBrand("");
@@ -261,7 +261,7 @@ public class DatabaseController {
 			pass = false;
 		}
 		for (String category : product.getCategory()) {
-			query = "SELECT * FROM categories WHERE name=" + category + ";";
+			query = "SELECT * FROM categories WHERE name=\"" + category + "\";";
 			c_id.add(database.findCategory(query));
 			if(c_id.get(c_id.size()-1) != -1) {
 				product.getCategory().remove(category);
@@ -273,7 +273,7 @@ public class DatabaseController {
 		
 		if(pass) {
 			query = "INSERT INTO products (name, Description, color, b_id, inSystem) ";
-			query += "VALUES (" + product.getName() + ", " + product.getDescription()+", "+product.getColor();
+			query += "VALUES (\"" + product.getName() + "\", \"" + product.getDescription()+"\", \""+product.getColor() + "\"";
 			query += ", " + id + ", 0);";
 			database.Run(query);
 			for (Integer integer : c_id) {
@@ -285,37 +285,37 @@ public class DatabaseController {
 	}
 
 	public boolean addProductToStore(Product product) {
-		String query = "SELECT * FROM stores where name=" + product.getStore() + ";";
+		String query = "SELECT * FROM stores where name=\"" + product.getStore() + "\";";
 		int s_id = database.getStoreID(query);
-		query = "SELECT * FROM `has a_p` WHERE p_id=" + product.getId() + " and s_id=" + s_id + ";";
+		query = "SELECT * FROM `has a_p` WHERE p_id=\"" + product.getId() + "\" and s_id=" + s_id + ";";
 		if(database.inStore(query)) {
 			return false;
 		}
-		query = "INSERT INTO `has a_p` VALUES (" + s_id + ", " + product.getId() + ", ";
+		query = "INSERT INTO `has a_p` VALUES (" + s_id + ", \"" + product.getId() + "\", ";
 		query += product.getAvailable() + ", 0, " + product.getPrice() + ", 0);";
 		database.Run(query);
 		return true;
 	}
 
 	public void updateVCard(Customer c) {
-		String query = "UPDATE customers SET vCard=" + c.getVoucherCard() + "WHERE u_name=" + c.getName() + ";";
+		String query = "UPDATE customers SET vCard=" + c.getVoucherCard() + "WHERE u_name=\"" + c.getName() + "\";";
 		database.Run(query);
 	}
 
 	public void buy(Product product) {
-		String query = "SELECT * FROM stores where name=" + product.getStore() + ";";
+		String query = "SELECT * FROM stores where name=\"" + product.getStore() + "\";";
 		int s_id = database.getStoreID(query);
 		query = "UPDATE `has a_p` set avail=avail-1, sold = sold + 1 ";
-		query +="where s_id ="+ s_id+" and p_id =" +product.getId()+";";
+		query +="where s_id ="+ s_id+" and p_id =\"" +product.getId()+"\";";
 		database.Run(query);
 	}
 	
 	public void updateProduct(Product product) {
-		String query = "SELECT * FROM stores where name=" + product.getStore() + ";";
+		String query = "SELECT * FROM stores where name=\"" + product.getStore() + "\";";
 		int s_id = database.getStoreID(query);
 		query = "UPDATE `has a_p`";
 		query += " set avail = " + product.getAvailable() + ", price = " + product.getPrice();
-		query += " where p_id = " + product.getId() + " and s_id = " + s_id + ";";
+		query += " where p_id = \"" + product.getId() + "\" and s_id = " + s_id + ";";
 		database.Run(query);
 	}
 }

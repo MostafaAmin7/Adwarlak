@@ -32,7 +32,7 @@ public class ShopOwnerGUI extends JPanel{
 		setLayout(null);
 		
 		SearchGUI searchGUI = new SearchGUI(owner);
-		searchGUI.setBounds(10, 139, 500, 350);
+		searchGUI.setBounds(10, 139, 625, 350);
 		add(searchGUI);
 		
 		DefaultListModel<String> list = new DefaultListModel<>();
@@ -40,23 +40,6 @@ public class ShopOwnerGUI extends JPanel{
 		for(int i=0;i<stores.size();i++) {
 			list.addElement(stores.get(i));
 		}
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(270, 51, 140, 47);
-		add(scrollPane);
-		
-		JList<String> storeList = new JList<>(list);
-		scrollPane.setViewportView(storeList);
-		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		storeList.addListSelectionListener(new ListSelectionListener() {
-		    @Override
-		    public void valueChanged(ListSelectionEvent e)
-		    {
-		        if(!e.getValueIsAdjusting()) {
-		            selected = storeList.getSelectedValue();
-		        }
-		    }
-		});
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -88,7 +71,7 @@ public class ShopOwnerGUI extends JPanel{
 
 		JLabel nameError = new JLabel("");
 		nameError.setForeground(Color.RED);
-		nameError.setBounds(421, 51, 89, 14);
+		nameError.setBounds(546, 51, 89, 14);
 		add(nameError);
 		
 		JButton btnAddStore = new JButton("Add Store");
@@ -112,7 +95,7 @@ public class ShopOwnerGUI extends JPanel{
 				nameError.setVisible(false);
 			}
 		});
-		btnAddStore.setBounds(421, 105, 89, 23);
+		btnAddStore.setBounds(546, 105, 89, 23);
 		add(btnAddStore);
 		
 		JButton btnShowStatistics = new JButton("Show Statistics");
@@ -126,17 +109,17 @@ public class ShopOwnerGUI extends JPanel{
 		add(btnShowStatistics);
 		
 		JLabel lblAdwarlak = new JLabel("Adwarlak");
-		lblAdwarlak.setBounds(225, 15, 65, 14);
+		lblAdwarlak.setBounds(300, 11, 65, 14);
 		add(lblAdwarlak);
 		
 		
 		storeName = new JTextField();
-		storeName.setBounds(421, 30, 89, 20);
+		storeName.setBounds(546, 30, 89, 20);
 		add(storeName);
 		storeName.setColumns(10);
 		
 		storeAddress = new JTextField();
-		storeAddress.setBounds(421, 75, 89, 20);
+		storeAddress.setBounds(546, 75, 89, 20);
 		add(storeAddress);
 		storeAddress.setColumns(10);
 		
@@ -146,13 +129,30 @@ public class ShopOwnerGUI extends JPanel{
 				GUIController.getInstance().swapPanelWith(new AddingProductGUI(selected));
 			}
 		});
-		addProductButton.setBounds(270, 105, 141, 23);
+		addProductButton.setBounds(395, 105, 141, 23);
 		add(addProductButton);
 		
 		JLabel lblSelectStore = new JLabel("Select Store");
 		lblSelectStore.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectStore.setBounds(270, 33, 140, 14);
+		lblSelectStore.setBounds(396, 33, 140, 14);
 		add(lblSelectStore);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(398, 52, 138, 45);
+		add(scrollPane);
+		
+		JList<String> storeList = new JList<>(list);
+		scrollPane.setViewportView(storeList);
+		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		storeList.addListSelectionListener(new ListSelectionListener() {
+		    @Override
+		    public void valueChanged(ListSelectionEvent e)
+		    {
+		        if(!e.getValueIsAdjusting()) {
+		            selected = storeList.getSelectedValue();
+		        }
+		    }
+		});
 		
 		
 	}

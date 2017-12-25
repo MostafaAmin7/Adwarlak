@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /AdminGUI$1.class
 /AdminGUI$2.class
 /AdminGUI$3.class
@@ -40,10 +41,13 @@
 /ProductGUI.class
 /Project.class
 /Search.class
+=======
+>>>>>>> master
 /SearchGUI$1.class
 /SearchGUI$2.class
 /SearchGUI$3.class
 /SearchGUI$4.class
+<<<<<<< HEAD
 /SearchGUI.class
 /ShopOwner.class
 /ShopOwnerGUI.class
@@ -58,3 +62,5 @@
 /StatisticsGUI.class
 /Store.class
 /User.class
+=======
+>>>>>>> master

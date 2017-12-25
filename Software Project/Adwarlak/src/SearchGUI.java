@@ -13,6 +13,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
@@ -23,6 +25,9 @@ import javax.swing.JSpinner;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class SearchGUI extends JPanel{
 	//ENTRY 
@@ -54,6 +59,7 @@ public class SearchGUI extends JPanel{
 		productsToShow=DatabaseController.getInstance().search("",new ArrayList<String>(),new ArrayList<String>(),-1,-1);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("For customers");
+		chckbxNewCheckBox.setSelected(false);
 		
 		if(x instanceof Admin) {
 			chckbxNewCheckBox.setBounds(373, 11, 109, 23);
@@ -61,7 +67,7 @@ public class SearchGUI extends JPanel{
 		}
 		
 		Panel searchOptionPanel = new Panel();
-		searchOptionPanel.setBounds(373, 42, 109, 299);
+		searchOptionPanel.setBounds(516, 40, 109, 299);
 		add(searchOptionPanel);
 		searchOptionPanel.setLayout(null);
 		
@@ -110,8 +116,8 @@ public class SearchGUI extends JPanel{
 		});
 		
 		DefaultListModel<String> listCategories = new DefaultListModel<>();
-		for(int i=0;i<brands.size();i++) {
-			listCategories.addElement(brands.get(i));
+		for(int i=0;i<categories.size();i++) {
+			listCategories.addElement(categories.get(i));
 		}
 		
 		JScrollPane categoryListScrollPane = new JScrollPane();
@@ -177,53 +183,110 @@ public class SearchGUI extends JPanel{
 		searchOptionPanel.add(maxValue);
 		maxValue.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 40, 357, 301);
+
+		JPanel resultPanel = new JPanel();
+		JScrollPane scrollPane = new JScrollPane(resultPanel);
+		GroupLayout gl_resultPanel = new GroupLayout(resultPanel);
+		gl_resultPanel.setHorizontalGroup(
+			gl_resultPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 498, Short.MAX_VALUE)
+		);
+		gl_resultPanel.setVerticalGroup(
+			gl_resultPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 278, Short.MAX_VALUE)
+		);
+		resultPanel.setLayout(gl_resultPanel);
+		scrollPane.setBounds(10, 40, 500, 300);
 		add(scrollPane);
 		
-		Panel ResultPanel = new Panel();
-		scrollPane.setViewportView(ResultPanel);
-		ResultPanel.setLayout(null);
-		
-		ArrayList<ProductCardGUI> productCards=new ArrayList<ProductCardGUI>();
-		ArrayList<CustomerCardGUI> cards=new ArrayList<CustomerCardGUI>();
+		ArrayList<ProductCardGUI> productCardGUIs = new ArrayList<ProductCardGUI>();
+		ArrayList<CustomerCardGUI> customerCardGUIs= new ArrayList<CustomerCardGUI>();
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultPanel.removeAll();
+				resultPanel.removeAll();
+				resultPanel.repaint();
 				if(chckbxNewCheckBox.isSelected()) {
+//					System.out.println("AA");
 					customers=DatabaseController.getInstance().getCustomers(searchBar.getText());
+					
 					for(int i=0;i<customers.size();i++) {
-						cards.add(new CustomerCardGUI(customers.get(i)));
-						ResultPanel.add(cards.get(i));
+						CustomerCardGUI card=new CustomerCardGUI(customers.get(i));
+						card.setPreferredSize(new Dimension(500, 100));
+						customerCardGUIs.add(card);
+						resultPanel.add(card);
 					}
+
+//					JLabel dummy=new JLabel("");
+//					dummy.setBounds(0, customers.size()*100, 10, 10);
+//					resultPanel.add(dummy);
 				}
 				else {
-					Double minVal,maxVal;
+					Double minVal=0D,maxVal=0D;
 					String mini=minValue.getText().trim();
 					String max=maxValue.getText().trim();
+					if(mini.equals("")) {
+						mini="-1";
+					}
+					if(max.equals("")) {
+						max="-1";
+					}
 					try {
 						minVal=Double.parseDouble(mini);
 						maxVal=Double.parseDouble(max);
 					} catch (Exception e2) {
 						minValue.setText("");
 						maxValue.setText("");
-						return;
 					}
 					if(maxVal<0) {
 						minVal=-1D;
 						maxVal=-1D;
 					}
 					productsToShow=DatabaseController.getInstance().search(searchBar.getText(),selectedBrands,selectedCategories,minVal.intValue(),maxVal.intValue());
+					
 					for(int i=0;i<productsToShow.size();i++) {
-						productCards.add(new ProductCardGUI(productsToShow.get(i),x,false));
-						ResultPanel.add(productCards.get(i));
+						ProductCardGUI card=new ProductCardGUI(productsToShow.get(i),x,false);
+						card.setBounds(0, i*100, 500, 100);
+//						card.setPreferredSize(new Dimension(500, 100));
+						productCardGUIs.add(card);
+						resultPanel.add(card);
+//						resultPanel..add(arg0)
 					}
+//					JLabel dummy=new JLabel("");
+//					dummy.setBounds(0, productsToShow.size()*100, 10, 10);
+//					resultPanel.add(dummy);
+					resultPanel.setPreferredSize(new Dimension(500, productsToShow.size()*100));
+					
 				}
 			}
 		});
 		searchButton.setBounds(10, 11, 83, 23);
 		add(searchButton);
+		
+		
+//		scrollPane.setViewportView(resultPanel);
+		
+		
+		
+		
+//		Product z=new Product();
+//		z.setName("nn");
+//		z.setBrand("MM");
+//		z.setCategory(new ArrayList<String>());
+//		z.setStore("SSSS");
+//		z.setPrice(15D);
+//		ProductCardGUI ca=new ProductCardGUI(z,new Guest(),false);
+//		ca.setBounds(0, 0, 500, 100);
+//		Product z1=new Product();
+//		z1.setName("nn");
+//		z1.setBrand("MM");
+//		z1.setCategory(new ArrayList<String>());
+//		z1.setStore("SSSS");
+//		z1.setPrice(15D);
+//		ProductCardGUI ca1=new ProductCardGUI(z,new Guest(),false);
+//		ca1.setBounds(0, 100, 500, 100);
+//		ResultPanel.add(ca);
+//		ResultPanel.add(ca1);
 		
 	}
 }

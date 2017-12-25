@@ -53,7 +53,8 @@ public class LogIn extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// empty Validation
 				String name=userNameField.getText().trim();
-				String password=passwordField.getPassword().toString().trim();
+//				String password=passwordField.getPassword().toString().trim();
+				String password=passwordField.getText().toString().trim();
 				if(name.equals("")) {
 					userNameErrorLabel.setText("Empty user name!");
 					userNameErrorLabel.setVisible(true);
@@ -71,15 +72,17 @@ public class LogIn extends JPanel{
 					passwordErrorLabel.setVisible(false);
 				}
 			//TODO Validation by database
+				System.out.println(name + "   " + password);
+//				password = "123";
 				User x = DatabaseController.getInstance().signIn(name, password);
 				if( x instanceof Customer) {
 					GUIController.getInstance().swapPanelWith(new CustomerGUI((Customer)DatabaseController.getInstance().signIn(name, password)));
 				}
 				else if(x instanceof Admin) {
-					
+					GUIController.getInstance().swapPanelWith(new AdminGUI((Admin)DatabaseController.getInstance().signIn(name, password)));
 				}
 				else if(x instanceof ShopOwner) {
-					
+					GUIController.getInstance().swapPanelWith(new ShopOwnerGUI((ShopOwner)DatabaseController.getInstance().signIn(name, password)));
 				}
 				else {
 					passwordErrorLabel.setText("Wrong user name or password!");
